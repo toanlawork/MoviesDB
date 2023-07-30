@@ -10,7 +10,12 @@
     <string name="top_rated">Top rated</string>
     <string name="popular">Popular</string>
     <string name="home_title">What do you want to watch?</string>
-
+    <string name="movie_detail_about_movie">About Movie</string>
+    <string name="movie_detail_reviews">Reviews</string>
+    <string name="movie_detail_cast">Cast</string>
+    <string name="run_time">%d minutes</string>
     <string name="network_disconnect">An error has occurred. Please try again later.</string>
     <string name="description">Image description</string>
+    <string name="about_movie">From DC Comics comes the Suicide Squad, an antihero team of incarcerated supervillains who act as deniable assets for the United States government, undertaking high-risk black ops missions in exchange for commuted prison sentences.</string>
+
 </resources>

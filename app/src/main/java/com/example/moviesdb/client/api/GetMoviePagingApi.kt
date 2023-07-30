@@ -11,4 +11,7 @@ class GetMoviePagingApi @Inject constructor(
 ) {
     fun getMoviesPaging(movieType: MovieType): Flow<PagingData<MovieModel>> =
         movieRepository.getMoviePaging(movieType = movieType)
+
+    fun getMovieSearchPaging(query: String): Flow<PagingData<MovieModel>> =
+        movieRepository.getMovieSearchPaging(parameter = query)
 }

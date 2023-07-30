@@ -51,6 +51,7 @@ import com.example.moviesdb.R
 import com.example.moviesdb.client.model.MovieModel
 import com.example.moviesdb.client.model.MovieTabItem
 import com.example.moviesdb.client.model.MovieType
+import com.example.moviesdb.features.DetailNavItem
 import com.example.moviesdb.features.HomeBottomItem
 import com.example.moviesdb.features.customview.CustomPagingGridHorView
 import com.example.moviesdb.features.customview.CustomPagingGridView
@@ -88,14 +89,6 @@ fun HomeScreen(pagerState: PagerState, navController: NavHostController) {
             fontSize = dimensions()._18Sp,
         )
         Spacer(Modifier.height(dimensions()._24Dp))
-        SearchView(onSearchHomeClick = {
-            scope.launch {
-                pagerState.animateScrollToPage(HomeBottomItem.SEARCH.index)
-            }
-        }) {
-            // Do nothing
-        }
-        Spacer(Modifier.height(dimensions()._21Dp))
         MovieTabContentHorizontalScreen(MovieType.TOP_RATED, navController)
         TabLayout(navController)
     }
@@ -152,15 +145,6 @@ fun SearchView(
         fontSize = dimensions()._14Sp,
         placeholderText = stringResource(id = R.string.search),
     )
-}
-
-
-@ExperimentalMaterialApi
-@ExperimentalFoundationApi
-@Composable
-private fun RecyclerViewHorizontal(mainNavHostController: NavHostController) {
-
-
 }
 
 
@@ -249,7 +233,7 @@ private fun MovieTabContentScreen(
         MoviesPagingGridView(
             movieType = movieType,
             onMovieItemClick = { movie ->
-
+                mainNavHostController.navigate("${DetailNavItem.DETAIL.route}/${movie.id}")
             },
         )
     }
@@ -272,6 +256,7 @@ private fun MovieTabContentHorizontalScreen(
         MoviesPagingGridHorView(
             onMovieItemClick = { movie ->
 
+                mainNavHostController.navigate("${DetailNavItem.DETAIL.route}/${movie.id}")
             },
         )
     }

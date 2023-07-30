@@ -88,7 +88,7 @@ fun MainNavHost() {
     val navController = rememberNavController()
     val movieDetailRouter = stringResource(
         id = R.string.movie_detail_router,
-        DetailNavItem.HOME.route,
+        DetailNavItem.DETAIL.route,
         Constant.MOVIE_ID,
     )
     NavHost(navController, startDestination = DetailNavItem.HOME.route) {
@@ -104,7 +104,7 @@ fun MainNavHost() {
                 backStackEntry.arguments?.getInt(Constant.MOVIE_ID)
             }
             movieId?.let {
-                MovieDetailScreen(it)
+                MovieDetailScreen(id = it, navController = navController)
             }
         }
     }

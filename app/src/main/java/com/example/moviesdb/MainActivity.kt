@@ -128,7 +128,7 @@ fun bottomNav(
                     )
                 },
                 label = { Text(text = stringResource(id = item.title)) },
-                alwaysShowLabel = false,
+                alwaysShowLabel = true,
                 selected = pageState.currentPage == index,
                 selectedContentColor = colorResource(id = R.color.color_0296E5),
                 unselectedContentColor = colorResource(id = R.color.color_67686D),
