@@ -5,6 +5,7 @@ import com.example.moviesdb.client.model.Credit
 import com.example.moviesdb.client.model.Genres
 import com.example.moviesdb.client.model.MovieDetail
 import com.example.moviesdb.client.model.MovieResponse
+import com.example.moviesdb.client.model.ReviewResponse
 import retrofit2.http.GET
 import retrofit2.http.Path
 import retrofit2.http.Query
@@ -50,4 +51,8 @@ interface ITheMovieDBService {
     // Get movies changes
     @GET("movie/changes")
     suspend fun getMoviesChanges(@Query("start_date") startDate: String): ChangesResponse
+
+
+    @GET("movie/{movieId}/reviews")
+    suspend fun getReviews(@Path("movieId") movieId: Int): ReviewResponse
 }

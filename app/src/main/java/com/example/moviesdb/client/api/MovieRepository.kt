@@ -8,10 +8,12 @@ import com.example.moviesdb.client.datasource.ITheMovieDBService
 import com.example.moviesdb.client.datasource.MovieDataSource
 import com.example.moviesdb.client.datasource.MovieDetailDataSource
 import com.example.moviesdb.client.datasource.MovieSearchPagingDataSource
+import com.example.moviesdb.client.model.Cast
 import com.example.moviesdb.client.model.ChangesResponse
 import com.example.moviesdb.client.model.MovieDetail
 import com.example.moviesdb.client.model.MovieModel
 import com.example.moviesdb.client.model.MovieType
+import com.example.moviesdb.client.model.ReviewResponse
 import kotlinx.coroutines.Deferred
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
@@ -26,6 +28,10 @@ interface MovieRepository {
     fun getMovieSearchPaging(parameter: String): Flow<PagingData<MovieModel>>
 
     suspend fun getMovieDetail(parameter: Int): MovieDetail
+
+    suspend fun getCast(parameter: Int): List<Cast>?
+
+    suspend fun getReview(parameter: Int): ReviewResponse
 }
 
 @Singleton
@@ -62,5 +68,13 @@ class MovieRepositoryIml @Inject constructor(
 
     override suspend fun getMovieDetail(parameter: Int): MovieDetail =
         movieDetailDataSource.getMovieDetail(parameter)
+
+    override suspend fun getCast(parameter: Int): List<Cast>? {
+        return movieDetailDataSource.getCast(parameter)
+    }
+
+    override suspend fun getReview(parameter: Int): ReviewResponse {
+        return movieDetailDataSource.getReview(parameter)
+    }
 
 }

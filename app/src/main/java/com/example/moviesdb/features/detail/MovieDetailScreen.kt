@@ -55,7 +55,11 @@ fun MovieDetailScreen(id: Int, navController: NavHostController) {
     val movieDetailViewModel = hiltViewModel<MovieDetailViewModel>()
 
     val lazyMovieDetail = movieDetailViewModel.movieDetail.observeAsState()
+    val _cast = movieDetailViewModel.cast.observeAsState()
+    val _review = movieDetailViewModel.reviewPaging.observeAsState()
     movieDetailViewModel.getMovieDetail(id)
+    movieDetailViewModel.getCastDetail(id)
+    movieDetailViewModel.getReviewsPaging(id)
 
     ConstraintLayout(
         modifier = Modifier
@@ -220,6 +224,8 @@ fun MovieDetailScreen(id: Int, navController: NavHostController) {
 
             MovieDetailTabLayout(
                 movie = movieDetail,
+                reviewResponse= _review.value,
+                cast = _cast.value ?: listOf(),
                 modifier = Modifier
                     .constrainAs(movieDetailTabs) {
                         top.linkTo(releaseDate.bottom)
