@@ -1,9 +1,13 @@
 package com.example.moviesdb.features.detail
 
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.Tab
 import androidx.compose.material.TabRow
+import androidx.compose.material.TabRowDefaults.tabIndicatorOffset
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.rememberCoroutineScope
@@ -41,13 +45,33 @@ fun MovieDetailTabLayout(movie: MovieDetail, modifier: Modifier) {
         ),
     )
 
+
     Column(modifier = modifier) {
         TabRow(
             selectedTabIndex = pagerState.currentPage,
+            backgroundColor = colorResource(id = R.color.back_ground),
+            indicator = { tabPositions ->
+                Box(
+                    Modifier
+                        .tabIndicatorOffset(tabPositions[pagerState.currentPage])
+                        .height(dimensions()._4Dp)
+                        .padding(start = dimensions()._10Dp, end = dimensions()._10Dp)
+                        .background(color = colorResource(id = R.color.color_3A3F47)),
+                )
+            },
         ) {
             tabRowItems.forEachIndexed { index, item ->
                 Tab(
-                    text = { Text(text = item.text) },
+                    text = {
+                        Text(
+                            item.text,
+                            color = if (pagerState.currentPage == index) {
+                                colorResource(id = R.color.white)
+                            } else {
+                                colorResource(id = R.color.color_67686D)
+                            },
+                        )
+                    },
                     selected = pagerState.currentPage == index,
                     onClick = { coroutineScope.launch { pagerState.animateScrollToPage(index) } },
                 )

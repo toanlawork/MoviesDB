@@ -21,7 +21,6 @@ class HomeViewModel @Inject constructor(
     private val getMovieApi: GetMoviePagingApi
 ) : ViewModel() {
 
-
     private val _movieSearchPaging = MutableLiveData<Flow<PagingData<MovieModel>>>()
     val movieSearchPaging: LiveData<Flow<PagingData<MovieModel>>> = _movieSearchPaging
 

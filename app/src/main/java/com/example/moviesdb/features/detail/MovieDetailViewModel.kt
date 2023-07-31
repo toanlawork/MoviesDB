@@ -9,14 +9,16 @@ import com.example.moviesdb.client.api.GetDetailPagingApi
 import com.example.moviesdb.client.api.GetMovieDetailApi
 import com.example.moviesdb.client.api.data
 import com.example.moviesdb.client.api.succeeded
+import com.example.moviesdb.client.model.Genre
 import com.example.moviesdb.client.model.MovieDetail
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 
+@HiltViewModel
 class MovieDetailViewModel @Inject constructor(
-    private val getMovieDetailUseCase: GetMovieDetailApi,
+    private val getMovieDetailUseCase: GetDetailPagingApi,
 ) : ViewModel() {
 
     private val _movieDetail = MutableLiveData<MovieDetail>()
@@ -31,4 +33,14 @@ class MovieDetailViewModel @Inject constructor(
         }
     }
 
+
+}
+
+
+fun List<Genre>?.convertGenres(): String {
+    return if (!this.isNullOrEmpty()) {
+        this.firstOrNull()?.name.toString() ?: ""
+    } else {
+        ""
+    }
 }
