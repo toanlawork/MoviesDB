@@ -145,7 +145,7 @@ private fun ReviewsScreen(reviewResponse: ReviewResponse?) {
             end = dimensions()._16Dp,
             top = dimensions()._20Dp,
         ),
-        columns = GridCells.Fixed(reviewResponse?.total_results ?: 0),
+        columns = GridCells.Fixed(1),
         content = {
             items(reviewResponse?.results?.size ?: 0) {
                 val review = reviewResponse?.results?.get(it)

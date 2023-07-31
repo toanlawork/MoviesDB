@@ -2,7 +2,6 @@ package com.example.moviesdb.client.api
 
 
 import com.example.moviesdb.client.model.Cast
-import com.example.moviesdb.client.model.MovieDetail
 import kotlinx.coroutines.CoroutineDispatcher
 import javax.inject.Inject
 

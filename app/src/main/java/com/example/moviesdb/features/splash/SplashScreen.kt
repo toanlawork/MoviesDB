@@ -44,7 +44,7 @@ fun SplashScreen(navController: NavHostController) {
     // Image
     Box(contentAlignment = Alignment.Center,
         modifier = Modifier.fillMaxSize()) {
-        Image(painter = painterResource(id = R.drawable.ic_launcher_background),
+        Image(painter = painterResource(id = R.drawable.ic_splash_background),
             contentDescription = "Logo",
             modifier = Modifier.scale(scale.value))
     }

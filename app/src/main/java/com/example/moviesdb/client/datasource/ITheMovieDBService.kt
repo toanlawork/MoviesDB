@@ -1,6 +1,5 @@
 package com.example.moviesdb.client.datasource
 
-import com.example.moviesdb.client.model.ChangesResponse
 import com.example.moviesdb.client.model.Credit
 import com.example.moviesdb.client.model.Genres
 import com.example.moviesdb.client.model.MovieDetail
@@ -36,21 +35,9 @@ interface ITheMovieDBService {
     @GET("search/movie")
     suspend fun getMovieSearch(@Query("query") query: String): MovieResponse
 
-    // Get genres
-    @GET("genre/movie/list")
-    suspend fun getGenres(): Genres
-
-    // Get movie genre
-    @GET("discover/movie")
-    suspend fun getMovieGenre(@Query("with_genres") genresId: Int): MovieResponse
-
     // Get credit
     @GET("movie/{movieId}/credits")
     suspend fun getCredit(@Path("movieId") movieId: Int): Credit
-
-    // Get movies changes
-    @GET("movie/changes")
-    suspend fun getMoviesChanges(@Query("start_date") startDate: String): ChangesResponse
 
 
     @GET("movie/{movieId}/reviews")

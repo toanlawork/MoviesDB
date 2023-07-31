@@ -95,59 +95,6 @@ fun HomeScreen(pagerState: PagerState, navController: NavHostController) {
 }
 
 
-@Composable
-fun SearchView(
-    onSearchHomeClick: (() -> Unit)? = null,
-    onSearchMoviesClick: ((query: String) -> Unit)? = null,
-) {
-    var text by remember { mutableStateOf("") }
-    val maxChar = 50
-    val modifier = if (onSearchHomeClick != null) {
-        Modifier
-            .background(colorResource(id = R.color.color_3A3F47))
-            .padding(start = dimensions()._16Dp, end = dimensions()._8Dp)
-            .height(dimensions()._42Dp)
-            .fillMaxWidth()
-            .clickable {
-                onSearchHomeClick()
-            }
-    } else {
-        Modifier
-            .background(colorResource(id = R.color.color_3A3F47))
-            .padding(start = dimensions()._16Dp, end = dimensions()._8Dp)
-            .height(dimensions()._42Dp)
-            .fillMaxWidth()
-    }
-
-    CustomTextField(
-        text = text,
-        trailingIcon = {
-            IconButton(onClick = {
-                if (onSearchMoviesClick != null) {
-                    onSearchMoviesClick(text)
-                }
-            }) {
-                Icon(
-                    imageVector = ImageVector.vectorResource(R.drawable.ic_search_view),
-                    contentDescription = "",
-                    tint = colorResource(id = R.color.color_67686D),
-                )
-            }
-        },
-        leadingIcon = null,
-        onValueChange = {
-            if (it.length <= maxChar) text = it
-        },
-        modifierBox = Modifier
-            .padding(start = dimensions()._16Dp, end = dimensions()._16Dp)
-            .clip(RoundedCornerShape(dimensions()._16Dp)),
-        modifier = modifier,
-        fontSize = dimensions()._14Sp,
-        placeholderText = stringResource(id = R.string.search),
-    )
-}
-
-
 @ExperimentalMaterialApi
 @ExperimentalFoundationApi
 @ExperimentalPagerApi

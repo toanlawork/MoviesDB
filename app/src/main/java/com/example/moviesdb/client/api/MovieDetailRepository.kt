@@ -5,12 +5,12 @@ import com.example.moviesdb.client.model.MovieDetail
 import javax.inject.Inject
 
 interface MovieDetailRepository {
-    suspend fun getMovieDetail(parameter: Int): MovieDetail
+    suspend fun getMovieDetail(id: Int): MovieDetail
 }
 
 class MovieDetailRepositoryIml @Inject constructor(
     private val movieDetailDataSource: MovieDetailDataSource,
 ) : MovieDetailRepository {
-    override suspend fun getMovieDetail(parameter: Int): MovieDetail =
-        movieDetailDataSource.getMovieDetail(parameter)
+    override suspend fun getMovieDetail(id: Int): MovieDetail =
+        movieDetailDataSource.getMovieDetail(id)
 }

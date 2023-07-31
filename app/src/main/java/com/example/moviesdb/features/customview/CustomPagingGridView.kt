@@ -84,44 +84,6 @@ fun <T : Any> CustomPagingGridView(
                 }
             }
 
-            /*val refreshState = lazyPagingItems.loadState.refresh
-            if (refreshState is LoadState.Loading) {
-                item {
-                    CircularProgressIndicator(
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .wrapContentWidth(align = Alignment.CenterHorizontally),
-                    )
-                }
-            } else if (refreshState is LoadState.Error) {
-                item {
-                    Box(modifier = Modifier.fillMaxSize()) {
-                        val error = refreshState.error
-                        Text("Initial Data Error: ${error.localizedMessage}")
-                        Button(onClick = { lazyPagingItems.retry() }) {
-                            Text("Retry")
-                        }
-                    }
-                }
-            }
-            val appendState = lazyPagingItems.loadState.append
-            if (appendState is LoadState.Loading) {
-                item {
-                    Row(verticalAlignment = Alignment.CenterVertically) {
-                        CircularProgressIndicator()
-                    }
-                }
-            } else if (appendState is LoadState.Error) {
-                item {
-                    val error = appendState.error
-                    Row(verticalAlignment = Alignment.CenterVertically) {
-                        Text("Subsequent data Error: ${error.localizedMessage}")
-                        Button(onClick = { lazyPagingItems.retry() }) {
-                            Text("Retry")
-                        }
-                    }
-                }
-            }*/
         },
     )
 }

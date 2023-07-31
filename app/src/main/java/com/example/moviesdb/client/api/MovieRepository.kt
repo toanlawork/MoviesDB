@@ -9,7 +9,6 @@ import com.example.moviesdb.client.datasource.MovieDataSource
 import com.example.moviesdb.client.datasource.MovieDetailDataSource
 import com.example.moviesdb.client.datasource.MovieSearchPagingDataSource
 import com.example.moviesdb.client.model.Cast
-import com.example.moviesdb.client.model.ChangesResponse
 import com.example.moviesdb.client.model.MovieDetail
 import com.example.moviesdb.client.model.MovieModel
 import com.example.moviesdb.client.model.MovieType
@@ -22,9 +21,9 @@ import javax.inject.Inject
 import javax.inject.Singleton
 
 interface MovieRepository {
-    suspend fun getChanges(parameter: String): ChangesResponse
     fun getMoviePaging(movieType: MovieType): Flow<PagingData<MovieModel>>
     suspend fun getMoviesDetail(parameter: List<Int?>): List<Deferred<MovieDetail>>
+
     fun getMovieSearchPaging(parameter: String): Flow<PagingData<MovieModel>>
 
     suspend fun getMovieDetail(parameter: Int): MovieDetail
@@ -40,9 +39,6 @@ class MovieRepositoryIml @Inject constructor(
     private val movieApiService: ITheMovieDBService,
     private val movieDetailDataSource: MovieDetailDataSource
 ) : MovieRepository {
-    override suspend fun getChanges(parameter: String): ChangesResponse =
-        movieDataSource.getChanges(parameter)
-
     override fun getMoviePaging(movieType: MovieType): Flow<PagingData<MovieModel>> =
         Pager(
             config = PagingConfig(

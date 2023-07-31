@@ -1,6 +1,5 @@
 package com.example.moviesdb.client.datasource
 
-import com.example.moviesdb.client.model.ChangesResponse
 import com.example.moviesdb.client.model.MovieDetail
 import kotlinx.coroutines.Deferred
 import kotlinx.coroutines.Dispatchers
@@ -12,7 +11,6 @@ import javax.inject.Inject
 import javax.inject.Singleton
 
 interface MovieDataSource {
-    suspend fun getChanges(parameter: String): ChangesResponse
     suspend fun getMoviesDetail(parameter: List<Int?>): List<Deferred<MovieDetail>>
 }
 
@@ -20,14 +18,10 @@ interface MovieDataSource {
 class MovieDataSourceImpl @Inject constructor(
     private val service: ITheMovieDBService,
 ) : MovieDataSource {
-    override suspend fun getChanges(parameter: String): ChangesResponse =
-        service.getMoviesChanges(parameter)
-
     override suspend fun getMoviesDetail(parameter: List<Int?>): List<Deferred<MovieDetail>> {
         return withContext(Dispatchers.IO) {
             parameter.map { id ->
                 async {
-                    // this will allow to run multiple tasks in parallel
                     if (id != null) {
                         try {
                             service.getMovieDetails(id)
